@@ -40,8 +40,11 @@ int main(int argv, char **args)
     if (p->type == PACKET_U32) {
         printf("%08x", p->data.as_u32);
     } else if (p->type == PACKET_BYTES) {
-        for (int i=0; i<4; i++) {
-            printf("%02x ", p->data.as_bytes[i]);
+        for (int i=0; i<sizeof(p->data.as_u32); i++) {
+            printf("%02x", p->data.as_bytes[i]);
+            if (i+1 < sizeof(p->data.as_u32)) {
+                printf(" ");
+            }
         }
     };
 }
