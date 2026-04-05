@@ -25,6 +25,7 @@ int main(int argv, char **args)
         .data = { .as_u32 = 12345678 },
     };
     struct packet *p = &a;
+    a.type = PACKET_BYTES;
     /*
         if the packet is a u32 type
         print the packet as a 4 byte hex integer
@@ -37,6 +38,10 @@ int main(int argv, char **args)
         no newlines
     */
     if (p->type == PACKET_U32) {
-        printf("%08x\n", p->data.as_u32);
+        printf("%08x", p->data.as_u32);
+    } else if (p->type == PACKET_BYTES) {
+        for (int i=0; i<4; i++) {
+            printf("%02x ", p->data.as_bytes[i]);
+        }
     };
 }
