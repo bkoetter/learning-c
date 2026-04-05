@@ -37,6 +37,6 @@ int main(int argv, char **args)
         no newlines
     */
     if (p->type == PACKET_U32) {
-        printf("%hhx\n", p->data.as_bytes);
+        printf("%08x\n", p->data.as_u32);
     };
 }
